@@ -12,7 +12,7 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 
 [project.scripts]
 ccp4-agent-install = "ccp4_agent.install:main"
