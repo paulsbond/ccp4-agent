@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ccp4-agent"
+dynamic = ["version"]
+description = "Knowledge base for LLM agents solving MX structures with CCP4"
+readme = "README.md"
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+requires-python = ">=3.9"
+
+[project.scripts]
+ccp4-agent-install = "ccp4_agent.install:main"
+
+[tool.setuptools]
+packages = ["ccp4_agent"]
+
+[tool.setuptools.package-data]
+ccp4_agent = ["ccp4/**/*"]
+
+[tool.setuptools.dynamic]
+version = { attr = "ccp4_agent.__version__" }
