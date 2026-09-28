@@ -7,12 +7,14 @@ A knowledge base that lets an LLM agent solve macromolecular crystal structures 
 To make it available to your agent, run:
 
 ```
-ccp4-agent-install
+ccp4-agent install
 ```
 
 This installs the `ccp4` [Agent Skill](https://agentskills.io) where your agents look for skills, and tells you what to do when CCP4 is updated.
 
 You can then ask your agent to solve a structure from any directory. The skill costs one short description in each session and loads the rest only when you ask for crystallography, so it stays out of the way in your other work.
+
+To remove it again, run `ccp4-agent uninstall`.
 
 ## Contributing
 

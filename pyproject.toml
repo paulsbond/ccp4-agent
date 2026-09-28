@@ -13,9 +13,10 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 requires-python = ">=3.11"
+dependencies = ["gemmi", "pandas"]
 
 [project.scripts]
-ccp4-agent-install = "ccp4_agent.install:main"
+ccp4-agent = "ccp4_agent.__main__:main"
 
 [tool.setuptools]
 packages = ["ccp4_agent"]
@@ -25,3 +26,12 @@ ccp4_agent = ["ccp4/**/*"]
 
 [tool.setuptools.dynamic]
 version = { attr = "ccp4_agent.__version__" }
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "F",  # Pyflakes
+    "I",  # isort
+    "PL", # Pylint
+    "W",  # pycodestyle warnings
+]
