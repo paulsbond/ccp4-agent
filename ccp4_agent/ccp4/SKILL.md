@@ -15,6 +15,8 @@ Topic pages say what to do and which program to use. Program pages say how to ru
 
 Record every step in `journal.md` in your working directory: the command you ran, the key numbers from its output, and what you decided.
 
+Before the first CCP4 command, find CCP4 and learn how to run its programs: [topics/ccp4-setup.md](topics/ccp4-setup.md).
+
 ## Stages
 
 1. Data processing: [topics/data-processing.md](topics/data-processing.md).
