@@ -11,7 +11,8 @@ xia2 pipeline=dials image=<images>
 ```
 
 - `<images>` is the NeXus master file ending in `.nxs`, or the first image file of a sweep. xia2 finds the other images itself.
-- To force a space group, add `space_group=<space group>`, for example `space_group=P43212`.
+- On Windows, add `read_all_image_headers=False` when giving an image file. _Why:_ without it, xia2 can stop at once with `Error: no sweeps found`, because reading the image headers in parallel fails there.
+- To force a space group, add `space_group=<space group>`, written without spaces, for example `space_group=P43212`, or `space_group=P1211` for `P 1 21 1`.
 - To process only some images, add the first and last image number to the image file: `image=<first image file>:<first>:<last>`, for example `image=insulin_1_001.img:1:40`.
 - To use XDS instead of DIALS, replace `pipeline=dials` with `pipeline=3dii`. This needs XDS installed, which you can check by looking for the command `xds_par`. XDS cannot read `.nxs` data unless an HDF5 plugin is installed.
 

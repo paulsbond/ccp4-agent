@@ -28,6 +28,7 @@ ccp4_agent/
   __main__.py                 the ccp4-agent command and its subcommands
   install.py                  ccp4-agent install and uninstall
   batches.py                  ccp4-agent batches, data quality against image number
+  contents.py                 ccp4-agent uniprot, similar and model, for the cell contents
   ccp4/                       the skill: everything the solver reads
     SKILL.md                  router and index; its description is all agents see until it is needed
     topics/<name>.md          what to do at a stage or for a problem, and which programs to use
@@ -68,7 +69,7 @@ Links inside the skill are relative paths, and every link must resolve inside `c
 - Keep pages under about 100 lines where you can. A longer page starts with a list of its sections, so that an agent previewing it sees everything it covers.
 - The solver often reaches a page because another page sent it there, not straight from `SKILL.md`. `SKILL.md` therefore tells it to read every page in full. Check that it does when testing with a small model.
 
-Programs used by several topics, such as a refinement program, get one program page, not a copy in each topic.
+Programs used by several topics, such as a refinement program, get one program page, not a copy in each topic. A program run for separate purposes gets a page for each purpose, named `programs/<program>-<purpose>.md`, such as `programs/gemmi-mtz.md` and `programs/gemmi-convert.md`, so that the solver reads only the part it needs.
 
 ## Writing for the solver
 
@@ -88,7 +89,8 @@ When writing for the solver:
 - When only a later stage can show whether a result is good enough, say so: continue, and say what to come back and try if that stage fails.
 - End every branch in an action. Write "if X, do Y", never "consider whether".
 - Give complete commands, keywords included, instead of describing what to run. Do not assume the model knows any program's syntax.
-- Say which numbers to take from which log or summary file. If no program prints them compactly, a new subcommand of `ccp4-agent` can, so that it is on the PATH wherever CCP4 is installed.
+- Say which numbers to take from which log or summary file. If no program prints them compactly, a new subcommand of `ccp4-agent` can, so that it is on the PATH wherever CCP4 is installed. Give each subcommand a program page of its own, `programs/ccp4-agent-<subcommand>.md`, like any other program.
+- Keep commands out of topic pages. Name the program, its input files and the choices to make, and link to the program page for the command.
 - Where a decision needs judgement, add a short worked example at that step: a few trimmed log lines from a real run, the decision taken, and one line on why.
 - Use the same term for the same thing everywhere, and define each term once, in the page where it first matters.
 - Write in the imperative, addressed to the solver ("Run…", "If…, go to…"). Leave out narrative, history and asides.

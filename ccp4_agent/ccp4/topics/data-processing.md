@@ -8,6 +8,7 @@ You have diffraction images from a rotation sweep and need merged intensities in
 
 - The images: the NeXus master file ending in `.nxs` for Eiger data, or the image files of the sweep.
 - Optionally, a space group, lattice or image range from a later stage.
+- Optionally, the space groups and cells of earlier structures of the same molecule, from the `Similar structures` section of `journal.md`, found as in [topics/similar-structures.md](similar-structures.md).
 
 ## Steps
 
@@ -16,17 +17,13 @@ You have diffraction images from a rotation sweep and need merged intensities in
 3. Check the data against image number, as in "Quality against image number" below.
 4. Explain the completeness and resolution, as in "Completeness" and "Resolution limit" below.
 5. Check for twinning, pseudotranslation and ice rings, as in "Twinning, pseudotranslation and ice rings" below.
-6. Tell the user what you found in steps 3 to 5, and continue to the next stage with `DataFiles/AUTOMATIC_DEFAULT_free.mtz`. There is no fixed standard for good enough: the next stages show whether the data suffice.
+6. Check how clearly the data support the symmetry, as in "Symmetry" below.
+7. Compare the space group and cell with earlier structures of the same molecule, as in "Known crystal forms" below.
+8. Tell the user what you found in steps 3 to 7, and continue to the next stage with `DataFiles/AUTOMATIC_DEFAULT_free.mtz`. There is no fixed standard for good enough: the next stages show whether the data suffice.
 
 ## Quality against image number
 
-Run:
-
-```
-ccp4-agent batches DataFiles/AUTOMATIC_DEFAULT_scaled_unmerged.mtz
-```
-
-It prints Rmerge and I/sigma for ranges of images, then lists single images that stand out from the rest.
+Run `ccp4-agent batches` on `DataFiles/AUTOMATIC_DEFAULT_scaled_unmerged.mtz`, as described in [programs/ccp4-agent-batches.md](../programs/ccp4-agent-batches.md). It shows Rmerge and I/sigma for ranges of images, then lists single images that stand out from the rest.
 
 - **Single images listed.** Something went wrong on those images, for example ice, a shutter fault, or the crystal leaving the beam. Process again without them. For images at the start or end of the sweep, give xia2 an image range. For images in the middle, use DIALS step by step and exclude them when scaling, as described in [programs/dials.md](../programs/dials.md).
 - **Rmerge rising and I/sigma falling steadily towards the end of the sweep.** This is radiation damage. Process again without the worst images at the end, and keep both results. _Why:_ leaving out images improves agreement but loses completeness and multiplicity, which matter most for experimental phasing, and only the next stages show which result is better. Record both in `journal.md`, with the completeness and, for anomalous data, the anomalous completeness and multiplicity of each.
@@ -57,6 +54,35 @@ No ice ring related problems detected.
 ```
 
 Copy these lines into `journal.md`. If Xtriage reports twinning or pseudotranslation (translational NCS), tell the user and continue. _Why:_ both change how the later stages should run, and those stages need to know.
+
+## Symmetry
+
+xia2 chooses the symmetry from how well reflections agree under each symmetry operator. The scores are in `LogFiles/AUTOMATIC_DEFAULT_SYMMETRY.log`. Read the table under `Scoring individual symmetry elements`, and the lines after `Best solution`:
+
+```
+|   likelihood |   Z-CC |   CC |     N |    | Operator     |
+|        0.898 |   9.27 | 0.93 | 50382 | ** | 1 |(0, 0, 0) |
+|        0.854 |   8.78 | 0.88 | 49722 | ** | 2 |(0, 1, 0) |
+
+Best solution: C 1 2/m 1
+Laue group probability: 0.854
+Laue group confidence: 0.777
+```
+
+Each line is one operator: the identity (`1`), then rotations such as a 2-fold (`2`) about the axis in brackets. `likelihood` near 1 and stars mean the data have that symmetry. Here the one 2-fold scores well, so C 1 2/m 1 is supported.
+
+- **Every operator near 1 or near 0.** The choice is clear. Continue.
+- **An operator in between, roughly 0.3 to 0.7, or with a small `N`.** The choice is uncertain: the true symmetry may be higher or lower. Record which operator, and continue. If an earlier structure of the same molecule exists, "Known crystal forms" below decides. Otherwise, molecular replacement can test the alternatives.
+
+## Known crystal forms
+
+If the `Similar structures` section of `journal.md` lists earlier structures of the same molecule, the user's own or from the PDB, compare the space group and cell in `xia2-summary.dat` with theirs. Compare the cell lengths in any order, since the axes may be labelled differently.
+
+- **Same space group, and every cell length and angle within about 2% of an earlier structure's.** The same crystal form: the crystals are probably isomorphous. Record that structure in `journal.md`, and go next to [topics/isomorphous-refinement.md](isomorphous-refinement.md) instead of molecular replacement. _Why:_ the cell of one crystal form varies by a little between crystals, and the earlier model is already in place.
+- **Same cell, and a space group that differs only in its screw axes, such as P 4<sub>1</sub> 2<sub>1</sub> 2 and P 4<sub>3</sub> 2<sub>1</sub> 2.** Also the same crystal form. _Why:_ the diffraction data alone cannot tell such space groups apart, so xia2 may pick either. Go to [topics/isomorphous-refinement.md](isomorphous-refinement.md), which takes the earlier structure's space group.
+- **A similar cell, but xia2 chose a space group of lower symmetry than the earlier structure's.** Run xia2 again in a new directory, forcing that structure's space group as described in [programs/xia2.md](../programs/xia2.md), and keep both results. _Why:_ xia2 judges the symmetry from these data alone, and only molecular replacement and refinement show which space group is right.
+- **A similar cell, but xia2 chose a space group of higher symmetry.** Keep xia2's result, and record the difference.
+- **No similar cell.** A new crystal form. Record it and continue.
 
 ## If it fails
 
