@@ -32,7 +32,19 @@ C:\Users\jo\CCP4-9\CCP4\ccp4.setup.bat  9.0.017
 
 ### Linux and macOS
 
-Ask the user how they set up CCP4 in a terminal, and follow that.
+This command checks the default locations, for example `/opt/xtal/ccp4-9` on Linux and `/Applications/ccp4-9` on macOS, and folders up to two levels deep in your home folder, `/opt`, `/usr/local` and `/Applications`, for example `~/programs/ccp4-9`. On Linux it also follows the CCP4 icons in the applications menu and on the desktop. The CCP4 folder holds `bin/ccp4.setup-sh`. In bash or zsh:
+
+```
+{ find "$HOME" /opt /usr/local /Applications -maxdepth 4 -path '*/bin/ccp4.setup-sh' 2>/dev/null; find "$HOME/.local/share/applications" /usr/share/applications "$HOME/Desktop" -maxdepth 1 -name '*.desktop' -exec grep -ho '/[^ ]*/bin/ccp4' {} + 2>/dev/null | sed 's,$,.setup-sh,'; } | sort -u | while read -r f; do if [ -f "$f" ]; then echo "$f  $(cat "${f%/bin/*}/lib/ccp4/MAJOR_MINOR" 2>/dev/null)"; fi; done
+```
+
+Each line is a setup file and its version, for example:
+
+```
+/home/jo/programs/ccp4-9/bin/ccp4.setup-sh  9.0.017
+```
+
+If the command finds nothing, ask the user how they set up CCP4 in a terminal, and follow that.
 
 ## Running a command
 
@@ -40,6 +52,7 @@ If CCP4 was already set up in step 1, run commands as they are. Otherwise your s
 
 - Windows, PowerShell: `cmd /c 'call "<setup>" >nul && <command>'`
 - Windows, bash: `cmd //c call "<setup>" '>nul' '&&' <command>`
+- Linux and macOS: `. "<setup>" && <command>`
 
 For example, in PowerShell:
 
@@ -47,11 +60,17 @@ For example, in PowerShell:
 cmd /c 'call "C:\Users\jo\CCP4-9\CCP4\ccp4.setup.bat" >nul && dials.version'
 ```
 
+On Linux:
+
+```
+. "/home/jo/programs/ccp4-9/bin/ccp4.setup-sh" && dials.version
+```
+
 ## Paths
 
 Check the full path of the CCP4 folder and of your working directory. Each should contain only letters, digits, `-`, `_`, `.`, and the separators `\`, `/` and `:`. _Why:_ many CCP4 programs fail on paths with spaces or other characters, and Windows paths often contain them through the user name.
 
-- If the working directory's path has other characters, tell the user and ask them for a working directory without them, for example `C:\xtal\<project>`. Copy or move the data there only if the user agrees.
+- If the working directory's path has other characters, tell the user and ask them for a working directory without them, for example `C:\xtal\<project>` on Windows or `/home/<name>/xtal/<project>` on Linux. Copy or move the data there only if the user agrees.
 - If the CCP4 folder's path has other characters, tell the user that CCP4 programs may fail and that reinstalling CCP4 in such a folder avoids it. Continue only if the user asks you to.
 
 ## If it fails
