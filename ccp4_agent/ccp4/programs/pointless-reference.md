@@ -1,20 +1,20 @@
-# Pointless
+# Pointless: indexing against a reference
 
-Pointless checks the symmetry of diffraction data, and checks their indexing against reference data or a reference model.
+Pointless checks the indexing of diffraction data against reference data or a reference model, and reindexes the data to match.
 
 ## Running it
+
+Write a keyword file `pointless.inp` containing only the line `END`. _Why:_ without a keyword file, Pointless waits for keywords to be typed and never finishes.
 
 To check the indexing of merged or unmerged data against a model:
 
 ```
-pointless HKLIN <data.mtz> XYZIN ./<model.cif> HKLOUT reindexed.mtz
+pointless HKLIN <data.mtz> XYZIN ./<model.cif> HKLOUT reindexed.mtz < pointless.inp > pointless.log
 ```
 
 - `XYZIN` is a PDB or mmCIF file with the space group and cell. Pointless calculates reference data from it.
 - To compare with reference data instead of a model, replace `XYZIN ./<model.cif>` with `HKLREF <reference.mtz>`.
 - Keep `./` in front of a `.cif` file in the current folder. _Why:_ without a folder, CCP4 first looks for the file in its own library and prints `Cannot find input file (Error)` at the top of the log, although it then reads yours.
-- Pointless writes its log to the screen. To keep it, add `> pointless.log` to the command.
-
 ## Reading the result
 
 The summary at the end of the log has one of these tables. Where the data can be indexed in more than one way:

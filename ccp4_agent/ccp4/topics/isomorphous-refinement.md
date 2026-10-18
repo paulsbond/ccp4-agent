@@ -23,7 +23,7 @@ Data processing found the same crystal form as an earlier structure of the same 
 
 ## Indexing
 
-Check the indexing of `DataFiles/AUTOMATIC_DEFAULT_free.mtz` against `start.cif` as the reference model with Pointless, writing `reindexed.mtz`, as described in [programs/pointless.md](../programs/pointless.md). _Why:_ in some space groups, such as P 3, P 4 or P 6, the same data can be indexed in two or more ways that are equally valid on their own, so data processing picks one at random, and only the earlier structure shows which way matches it. `reindexed.mtz` is indexed to match the model and takes the model's space group, which also settles space groups that the data alone cannot tell apart, such as P 4<sub>1</sub> 2<sub>1</sub> 2 and P 4<sub>3</sub> 2<sub>1</sub> 2.
+Check the indexing of `DataFiles/AUTOMATIC_DEFAULT_free.mtz` against `start.cif` as the reference model with Pointless, writing `reindexed.mtz`, as described in [programs/pointless-reference.md](../programs/pointless-reference.md). _Why:_ in some space groups, such as P 3, P 4 or P 6, the same data can be indexed in two or more ways that are equally valid on their own, so data processing picks one at random, and only the earlier structure shows which way matches it. `reindexed.mtz` is indexed to match the model and takes the model's space group, which also settles space groups that the data alone cannot tell apart, such as P 4<sub>1</sub> 2<sub>1</sub> 2 and P 4<sub>3</sub> 2<sub>1</sub> 2.
 
 Read the CC of each line of the table at the end of the log:
 

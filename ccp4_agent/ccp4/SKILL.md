@@ -35,14 +35,16 @@ Only stages 1 to 4 and isomorphous refinement have topic pages so far. If you ar
 
 ## Programs
 
-- [programs/xia2.md](programs/xia2.md): automated data processing with DIALS, or with XDS if it is installed.
-- [programs/dials.md](programs/dials.md): data processing one step at a time, for choosing a lattice or processing several lattices.
+- [programs/aimless.md](programs/aimless.md): scaling and merging integrated data, such as unscaled data from MOSFLM.
 - [programs/ccp4-agent-batches.md](programs/ccp4-agent-batches.md): data quality against image number.
-- [programs/gemmi-mtz.md](programs/gemmi-mtz.md): describing an MTZ file.
-- [programs/gemmi-convert.md](programs/gemmi-convert.md): removing waters and ligands from a model.
 - [programs/ccp4-agent-model.md](programs/ccp4-agent-model.md): the space group, cell, ligands and sequences of a coordinate file or PDB entry, compared with the crystal's contents.
-- [programs/ccp4-agent-uniprot.md](programs/ccp4-agent-uniprot.md): a UniProt entry, compared with the construct.
-- [programs/mrparse.md](programs/mrparse.md): searching for similar structures from the PDB (on this computer) and the AlphaFold database (online).
 - [programs/ccp4-agent-similar.md](programs/ccp4-agent-similar.md): searching the current PDB online, only when the user asks.
-- [programs/pointless.md](programs/pointless.md): checking the indexing of data against a model or reference data.
+- [programs/ccp4-agent-uniprot.md](programs/ccp4-agent-uniprot.md): a UniProt entry, compared with the construct.
+- [programs/dials.md](programs/dials.md): data processing one step at a time, for choosing a lattice or processing several lattices.
+- [programs/gemmi-convert.md](programs/gemmi-convert.md): removing waters and ligands from a model.
+- [programs/gemmi-mtz.md](programs/gemmi-mtz.md): describing an MTZ file.
+- [programs/mrparse.md](programs/mrparse.md): searching for similar structures from the PDB (on this computer) and the AlphaFold database (online).
+- [programs/pointless-reference.md](programs/pointless-reference.md): checking the indexing of data against a model or reference data.
+- [programs/pointless-symmetry.md](programs/pointless-symmetry.md): choosing the space group of integrated data before scaling with Aimless.
 - [programs/servalcat.md](programs/servalcat.md): refinement of a model against X-ray data.
+- [programs/xia2.md](programs/xia2.md): automated data processing with DIALS, or with XDS if it is installed.
