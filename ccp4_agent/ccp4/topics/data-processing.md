@@ -12,7 +12,7 @@ You have diffraction images from a rotation sweep and need merged intensities in
 
 ## Steps
 
-1. Process the images with xia2 and the DIALS pipeline, as described in [programs/xia2.md](../programs/xia2.md). If a later stage gave you a space group, pass it to xia2.
+1. Process the images with xia2 and the DIALS pipeline ([programs/xia2.md](../programs/xia2.md)). If a later stage gave you a space group, pass it to xia2.
 2. Copy `xia2-summary.dat` into `journal.md`.
 3. Check the data against image number, as in "Quality against image number" below.
 4. Explain the completeness and resolution, as in "Completeness" and "Resolution limit" below.
@@ -23,9 +23,9 @@ You have diffraction images from a rotation sweep and need merged intensities in
 
 ## Quality against image number
 
-Run `ccp4-agent batches` on `DataFiles/AUTOMATIC_DEFAULT_scaled_unmerged.mtz`, as described in [programs/ccp4-agent-batches.md](../programs/ccp4-agent-batches.md). It shows Rmerge and I/sigma for ranges of images, then lists single images that stand out from the rest.
+Run `ccp4-agent batches` ([programs/ccp4-agent-batches.md](../programs/ccp4-agent-batches.md)) on `DataFiles/AUTOMATIC_DEFAULT_scaled_unmerged.mtz`. It shows Rmerge and I/sigma for ranges of images, then lists single images that stand out from the rest.
 
-- **Single images listed.** Something went wrong on those images, for example ice, a shutter fault, or the crystal leaving the beam. Process again without them. For images at the start or end of the sweep, give xia2 an image range. For images in the middle, use DIALS step by step and exclude them when scaling, as described in [programs/dials.md](../programs/dials.md).
+- **Single images listed.** Something went wrong on those images, for example ice, a shutter fault, or the crystal leaving the beam. Process again without them. For images at the start or end of the sweep, give xia2 an image range. For images in the middle, use DIALS step by step ([programs/dials.md](../programs/dials.md)) and exclude them when scaling.
 - **Rmerge rising and I/sigma falling steadily towards the end of the sweep.** This is radiation damage. Process again without the worst images at the end, and keep both results. _Why:_ leaving out images improves agreement but loses completeness and multiplicity, which matter most for experimental phasing, and only the next stages show which result is better. Record both in `journal.md`, with the completeness and, for anomalous data, the anomalous completeness and multiplicity of each.
 - **No trend and no images listed.** Nothing to leave out.
 
@@ -80,12 +80,12 @@ If the `Similar structures` section of `journal.md` lists earlier structures of 
 
 - **Same space group, and every cell length and angle within about 2% of an earlier structure's.** The same crystal form: the crystals are probably isomorphous. Record that structure in `journal.md`, and go next to [topics/isomorphous-refinement.md](isomorphous-refinement.md) instead of molecular replacement. _Why:_ the cell of one crystal form varies by a little between crystals, and the earlier model is already in place.
 - **Same cell, and a space group that differs only in its screw axes, such as P 4<sub>1</sub> 2<sub>1</sub> 2 and P 4<sub>3</sub> 2<sub>1</sub> 2.** Also the same crystal form. _Why:_ the diffraction data alone cannot tell such space groups apart, so xia2 may pick either. Go to [topics/isomorphous-refinement.md](isomorphous-refinement.md), which takes the earlier structure's space group.
-- **A similar cell, but xia2 chose a space group of lower symmetry than the earlier structure's.** Run xia2 again in a new directory, forcing that structure's space group as described in [programs/xia2.md](../programs/xia2.md), and keep both results. _Why:_ xia2 judges the symmetry from these data alone, and only molecular replacement and refinement show which space group is right.
+- **A similar cell, but xia2 chose a space group of lower symmetry than the earlier structure's.** Run xia2 again in a new directory, forcing that structure's space group ([programs/xia2.md](../programs/xia2.md)), and keep both results. _Why:_ xia2 judges the symmetry from these data alone, and only molecular replacement and refinement show which space group is right.
 - **A similar cell, but xia2 chose a space group of higher symmetry.** Keep xia2's result, and record the difference.
 - **No similar cell.** A new crystal form. Record it and continue.
 
 ## If it fails
 
 - If xia2 with DIALS fails and the command `xds_par` exists, run xia2 with the XDS pipeline.
-- If xia2 still fails, or you need a lattice that xia2 cannot give, process the data step by step as described in [programs/dials.md](../programs/dials.md).
+- If xia2 still fails, or you need a lattice that xia2 cannot give, process the data step by step ([programs/dials.md](../programs/dials.md)).
 - If a later stage fails, come back here and try, in turn: leaving out damaged images, a lower resolution limit, and another space group or lattice suggested by that stage.

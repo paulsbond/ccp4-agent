@@ -13,7 +13,7 @@ After [topics/cell-contents.md](cell-contents.md), before any other step, whethe
 
 Run the commands below the way [topics/ccp4-setup.md](ccp4-setup.md) describes for CCP4 commands.
 
-1. Compare each of the user's coordinate files with `contents.fasta` using `ccp4-agent model`, as described in [programs/ccp4-agent-model.md](../programs/ccp4-agent-model.md), and judge it as in "The user's structures" below.
+1. Compare each of the user's coordinate files with `contents.fasta` using `ccp4-agent model` ([programs/ccp4-agent-model.md](../programs/ccp4-agent-model.md)), and judge it as in "The user's structures" below.
 2. Search the PDB and the AlphaFold database, as in "Searching the PDB and the AlphaFold database" below.
 3. Choose the starting model for phasing, as in "Choosing the starting model" below.
 4. Add a `Similar structures` section to `journal.md`. For each structure, record where it came from (the user's own, the PDB, or predicted), the file or PDB ID, the identity and the residues it covers, the space group and cell, and any ligands that matter, as in "Ligands" below. Record the starting model you chose, and why.
@@ -36,11 +36,11 @@ Choose the first that applies:
 
 ## Searching the PDB and the AlphaFold database
 
-For each record of `contents.fasta`, write it to a file of its own, such as `chain1.fasta`, and search with MrParse, listing the closest PDB entries, as described in [programs/mrparse.md](../programs/mrparse.md). It searches the PDB and the AlphaFold database on this computer, and sends the sequence nowhere. _Why the closest entries:_ they are usually several of the same molecule, which show its crystal forms and ligands. If none is the same molecule, run it again with its default grouping of near-identical sequences, to find homologues.
+For each record of `contents.fasta`, write it to a file of its own, such as `chain1.fasta`, and search with MrParse ([programs/mrparse.md](../programs/mrparse.md)), listing the closest PDB entries. It searches the PDB and the AlphaFold database on this computer, and sends the sequence nowhere. _Why the closest entries:_ they are usually several of the same molecule, which show its crystal forms and ligands. If none is the same molecule, run it again with its default grouping of near-identical sequences, to find homologues.
 
 Record the best prediction of each chain from `af_models.json`, with its `seq_ident`, `range` and `avg_plddt`.
 
-For the best entries, compare the PDB entry with `contents.fasta` using `ccp4-agent model` with the PDB ID, as described in [programs/ccp4-agent-model.md](../programs/ccp4-agent-model.md). _Why:_ MrParse removes ligands from the files it downloads, and this downloads the whole entry, for its space group, cell and ligands.
+For the best entries, compare the PDB entry with `contents.fasta` using `ccp4-agent model` ([programs/ccp4-agent-model.md](../programs/ccp4-agent-model.md)) with the PDB ID. _Why:_ MrParse removes ligands from the files it downloads, and this downloads the whole entry, for its space group, cell and ligands.
 
 - **Identity near 1, covering most of your sequence.** The same molecule. Your sequence may have a tag or extra residues that the structure lacks. Record the space group and cell: your crystals may have the same form, and data processing compares against it. The copies in such a structure are a hint for your crystal only if it has the same crystal form.
 - **Lower identity.** Homologues. Record them, and choose as in "Choosing the starting model" above.
@@ -65,4 +65,4 @@ UniProt lists zinc as the cofactor, and there is one `ZN` for the one chain, so 
 ## If it fails
 
 - If MrParse prints `Error downloading PDB file`, or `ccp4-agent model` prints `Could not download PDB entry`, this computer may have no internet access or the RCSB PDB may be down. Tell the user, record the PDB IDs, identities and ranges from `homologs.json`, which MrParse still writes, and continue.
-- If the AlphaFold database search stops with `SearchModelFinder failed:`, the same applies to the EBI. Record the IDs of the predictions it found from `phmmerTblout_af2.log`, as described in [programs/mrparse.md](../programs/mrparse.md), and continue.
+- If the AlphaFold database search stops with `SearchModelFinder failed:`, the same applies to the EBI. Record the IDs of the predictions it found from `phmmerTblout_af2.log` ([programs/mrparse.md](../programs/mrparse.md)), and continue.

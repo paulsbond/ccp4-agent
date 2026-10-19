@@ -20,5 +20,5 @@ Best Solution:    space group H 3 2
    Laue group probability:             0.999
 ```
 
-- The space group may differ from the one in the input file, here `H 3` before. `sorted.mtz` has Pointless's space group. Scale it with Aimless, as described in [programs/aimless.md](aimless.md).
+- The space group may differ from the one in the input file, here `H 3` before. `sorted.mtz` has Pointless's space group. Scale it with Aimless ([programs/aimless.md](aimless.md)).
 - If it says `point group` instead of `space group`, followed by `WARNING: You will have to determine the true space group later`, the data cannot tell apart space groups that differ only in their screw axes, such as I 2 3 and I 2<sub>1</sub> 3. Record both in `journal.md` and continue. _Why:_ molecular replacement, or an earlier structure of the same crystal form, decides between them.

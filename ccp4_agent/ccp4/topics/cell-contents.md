@@ -56,7 +56,7 @@ If the user does not know, record that. Do not guess a number of copies at this 
 
 ## Checking against UniProt
 
-Compare `contents.fasta` with the UniProt entry using `ccp4-agent uniprot`, as described in [programs/ccp4-agent-uniprot.md](../programs/ccp4-agent-uniprot.md). It lists how each record differs from UniProt.
+Compare `contents.fasta` with the UniProt entry using `ccp4-agent uniprot` ([programs/ccp4-agent-uniprot.md](../programs/ccp4-agent-uniprot.md)). It lists how each record differs from UniProt.
 
 - **Extra residues at either end.** Usually a tag or leftover residues from a cleaved one. Check them against what the user said about tags.
 - **A mutation, an insertion or missing residues that the user did not mention.** Ask the user about each one. _Why:_ it may be an unmentioned mutation, a different isoform or species, or a typing error.

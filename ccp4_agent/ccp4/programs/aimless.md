@@ -14,7 +14,7 @@ Aimless scales and merges integrated intensities from one sweep, such as unscale
 
 Make a new directory for each run and run both programs from inside it. _Why:_ Aimless writes files such as `ROGUES` and `SCALES` into the current directory, and a second run would overwrite them.
 
-1. Choose the space group and sort the data with Pointless, in the same directory, as described in [programs/pointless-symmetry.md](pointless-symmetry.md). This gives `sorted.mtz`.
+1. Choose the space group and sort the data with Pointless ([programs/pointless-symmetry.md](pointless-symmetry.md)), in the same directory. This gives `sorted.mtz`.
 2. Write a keyword file `aimless.inp` containing:
    ```
    OUTPUT MERGED UNMERGED
@@ -48,7 +48,7 @@ DelAnom correlation between half-sets      0.758     0.790     0.475
 ```
 
 - `DelAnom correlation between half-sets` measures the anomalous signal. When it is clear, the log says `There appears to be a significant anomalous signal so anomalous flag was switched ON`.
-- The table `Analysis against all Batches` earlier in the log gives `Rmerge` for each image, called a batch. For images that stand out, run `ccp4-agent batches` on `scaled_unmerged.mtz`, as described in [programs/ccp4-agent-batches.md](ccp4-agent-batches.md).
+- The table `Analysis against all Batches` earlier in the log gives `Rmerge` for each image, called a batch. For images that stand out, run `ccp4-agent batches` ([programs/ccp4-agent-batches.md](ccp4-agent-batches.md)) on `scaled_unmerged.mtz`.
 
 ## Leaving out images
 
