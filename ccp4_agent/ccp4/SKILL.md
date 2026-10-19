@@ -41,10 +41,14 @@ Only stages 1 to 4 and isomorphous refinement have topic pages so far. If you ar
 - [programs/ccp4-agent-similar.md](programs/ccp4-agent-similar.md): searching the current PDB online, only when the user asks.
 - [programs/ccp4-agent-uniprot.md](programs/ccp4-agent-uniprot.md): a UniProt entry, compared with the construct.
 - [programs/dials.md](programs/dials.md): data processing one step at a time, for choosing a lattice or processing several lattices.
+- [programs/freerflag.md](programs/freerflag.md): adding free-R flags to merged data that have none.
 - [programs/gemmi-convert.md](programs/gemmi-convert.md): removing waters and ligands from a model.
 - [programs/gemmi-mtz.md](programs/gemmi-mtz.md): describing an MTZ file.
+- [programs/molrep.md](programs/molrep.md): molecular replacement, including several copies, checking the space group and adding domains to a placed model.
 - [programs/mrparse.md](programs/mrparse.md): searching for similar structures from the PDB (on this computer) and the AlphaFold database (online).
 - [programs/pointless-reference.md](programs/pointless-reference.md): checking the indexing of data against a model or reference data.
 - [programs/pointless-symmetry.md](programs/pointless-symmetry.md): choosing the space group of integrated data before scaling with Aimless.
-- [programs/servalcat.md](programs/servalcat.md): refinement of a model against X-ray data.
+- [programs/reindex.md](programs/reindex.md): changing the space group of merged data to another of the same point group, such as the other enantiomorph.
+- [programs/servalcat.md](programs/servalcat.md): refinement of a model against X-ray data, including jelly-body refinement after molecular replacement.
+- [programs/sheetbend.md](programs/sheetbend.md): shift-field refinement, for correcting large errors after molecular replacement.
 - [programs/xia2.md](programs/xia2.md): automated data processing with DIALS, or with XDS if it is installed.

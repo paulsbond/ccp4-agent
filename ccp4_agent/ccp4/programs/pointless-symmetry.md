@@ -22,3 +22,13 @@ Best Solution:    space group H 3 2
 
 - The space group may differ from the one in the input file, here `H 3` before. `sorted.mtz` has Pointless's space group. Scale it with Aimless ([programs/aimless.md](aimless.md)).
 - If it says `point group` instead of `space group`, followed by `WARNING: You will have to determine the true space group later`, the data cannot tell apart space groups that differ only in their screw axes, such as I 2 3 and I 2<sub>1</sub> 3. Record both in `journal.md` and continue. _Why:_ molecular replacement, or an earlier structure of the same crystal form, decides between them.
+
+## Choosing the space group yourself
+
+To use a space group chosen by a later stage, such as molecular replacement, put this line before `END` in `pointless.inp`, with the space group written with spaces:
+
+```
+CHOOSE SPACEGROUP P 2 2 2
+```
+
+The log then says `Chosen Solution:    space group P 2 2 2` in place of `Best Solution:`.

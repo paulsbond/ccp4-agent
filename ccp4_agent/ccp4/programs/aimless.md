@@ -30,7 +30,7 @@ Make a new directory for each run and run both programs from inside it. _Why:_ A
 
 The run succeeded if `aimless.log` ends with `End of aimless job`. The output files are:
 
-- `scaled.mtz`: merged intensities, `IMEAN` and `SIGIMEAN`, and anomalous intensities `I(+)` and `I(-)`. It has no amplitudes and no free-R flag.
+- `scaled.mtz`: merged intensities, `IMEAN` and `SIGIMEAN`, and anomalous intensities `I(+)` and `I(-)`. It has no amplitudes and no free-R flag: add flags with Freerflag ([programs/freerflag.md](freerflag.md)) before using it for anything else.
 - `scaled_unmerged.mtz`: scaled, unmerged intensities.
 
 Copy the table after `Summary data for` near the end of `aimless.log` into `journal.md`, down to the line `Space group:`. Its three columns are overall, lowest-resolution shell and highest-resolution shell:
