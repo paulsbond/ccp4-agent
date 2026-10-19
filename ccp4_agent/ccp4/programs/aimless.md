@@ -62,7 +62,7 @@ END
 
 To leave out a range, write `EXCLUDE BATCH 121 TO 140`. The log then says `Excluded batches:` with the numbers.
 
-Example: with all 84 images, `ccp4-agent batches` listed image 74 with Rmerge 0.493 against a median of 0.076, and `Analysis against all Batches` showed image 75 also worse than its neighbours (Rmerge 0.106 against about 0.06). Leaving out both raised overall I/sigma from 22.4 to 24.9 and lowered completeness only from 99.0% to 98.7%. _Why both:_ image 75 was also clearly worse than the images around it.
+Leave out an image that `ccp4-agent batches` lists, and any image next to it that `Analysis against all Batches` shows clearly worse than the images around it. _Why:_ whatever spoiled the listed image can partly affect the next, and `ccp4-agent batches` lists only images that stand out strongly. Compare the summary tables of the two runs: leaving out a few bad images should raise I/sigma and lower completeness only slightly.
 
 ## Resolution limit
 

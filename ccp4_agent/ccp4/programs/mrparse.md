@@ -33,7 +33,7 @@ For the AlphaFold database:
 - `AF2_files` holds the downloaded predictions.
 - `models` holds each prediction prepared for molecular replacement: trimmed by pLDDT and to the region that aligns with your sequence, with pLDDT converted to B-factors.
 
-For example, a search with human carbonic anhydrase II listed in `homologs.json` first `3k34_A` with `seq_ident` 1.0 and `range` 3-260 (the same protein), then `4cnx_A` with `seq_ident` 0.79 (a homologue). In `af_models.json` it listed first `AF-P00918-F1` with `seq_ident` 1.0 and `avg_plddt` 97.6.
+A `seq_ident` of 1.0 over most of your sequence means the same protein. Lower values are homologues.
 
 The AlphaFold database holds predictions of single chains. A prediction of everything in the crystal together, made by the user, can be a better search model.
 

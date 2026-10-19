@@ -92,7 +92,7 @@ When writing for the solver:
 - Say which numbers to take from which log or summary file. If no program prints them compactly, a new subcommand of `ccp4-agent` can, so that it is on the PATH wherever CCP4 is installed. Give each subcommand a program page of its own, `programs/ccp4-agent-<subcommand>.md`, like any other program.
 - Keep commands out of topic pages. Name the program, its input files and the choices to make, and link to the program page for the command.
 - Put a link straight after the program it is for, with the page's path from the skill root as the link text, for example `Scale it with Aimless ([programs/aimless.md](aimless.md)).` The link target is relative to the page it is in, but agents do not always resolve paths that way, and the text names the page as `SKILL.md` lists it.
-- Where a decision needs judgement, add a short worked example at that step: a few trimmed log lines from a real run, the decision taken, and one line on why.
+- Where a decision needs judgement, describe the pattern to look for, such as "R-free falls clearly" or "one image stands out from its neighbours", and show the log lines to read it from. Do not quote the numbers your tests gave. _Why:_ a model takes them as targets or cut-offs, a few test cases do not justify them, and they bias tests on those datasets.
 - Use the same term for the same thing everywhere, and define each term once, in the page where it first matters.
 - Write in the imperative, addressed to the solver ("Run…", "If…, go to…"). Leave out narrative, history and asides.
 

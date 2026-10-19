@@ -52,15 +52,7 @@ If the user asks for a search of the whole current PDB, run [programs/ccp4-agent
 
 Read the `Ligands` line from `ccp4-agent model` for the entries of the same molecule. A metal or cofactor in those entries is probably in your crystal too, even if the user did not mention it, especially if UniProt lists it as a cofactor: add it to the expected contents in the `Cell contents` section of `journal.md`, and tell the user. Ignore common additives such as `GOL`, `EDO`, `SO4` and `CL` unless they are in your crystallisation conditions.
 
-For example, for human carbonic anhydrase II, the first MrParse run listed `3k34_A` with `seq_ident` 1.0, and `ccp4-agent model 3k34` printed:
-
-```
-Space group: P 1 21 1
-Cell: 42.045 41.269 71.821 90 104.23 90
-Ligands (residue name and number): GOL 3, HGB 1, SUA 1, ZN 1
-```
-
-UniProt lists zinc as the cofactor, and there is one `ZN` for the one chain, so add one zinc ion per chain to the expected contents. `GOL` is glycerol, an additive. `HGB` and `SUA` are compounds from that study: check them against the user's ligands.
+Count each metal or cofactor against the chains: one `ZN` in an entry with one chain, for a protein that UniProt says binds zinc, means one zinc ion per chain in your crystal. Other ligands that are neither additives nor cofactors are usually compounds from that study: check them against the user's ligands.
 
 ## If it fails
 

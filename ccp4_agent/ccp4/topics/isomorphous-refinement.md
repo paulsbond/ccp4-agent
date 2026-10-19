@@ -27,15 +27,15 @@ Check the indexing of `DataFiles/AUTOMATIC_DEFAULT_free.mtz` against `start.cif`
 
 Read the CC of each line of the table at the end of the log:
 
-- **CC of the first line near 0.7, the others near 0.** The data and the model match. In tests, the matching way gave CC 0.68–0.84, and the other way 0.07. Continue with `reindexed.mtz`.
-- **CC of the first line well below that, and close to the others.** The crystals are probably not isomorphous with the earlier structure. Refine anyway in step 4, as only refinement shows it clearly, and judge it there.
+- **CC of the first line clearly above the others, which are near 0.** The data and the model match. Continue with `reindexed.mtz`.
+- **CC of the first line low, and close to the others.** The crystals are probably not isomorphous with the earlier structure. Refine anyway in step 4, as only refinement shows it clearly, and judge it there.
 
 ## Did it work
 
 Read the `Rwork` and `Rfree` columns of Servalcat's table of statistics against cycle ([programs/servalcat.md](../programs/servalcat.md)).
 
-- **R near 0.3 at cycle 0, and falling.** The model fits: the crystals are isomorphous. In tests, R started at 0.28–0.32 and fell to 0.21–0.24 in 10 cycles, without waters or ligands. Continue.
-- **R near 0.5 or above at cycle 0, and hardly changing.** The model does not fit. In a test with the wrong indexing, R started at 0.53 and stayed above 0.5. _Why:_ an unrelated model gives R near 0.59 (Wilson, 1950, Acta Cryst. 3, 397–398). Check that you used `reindexed.mtz`. If you did, the crystals are not isomorphous: record that and go to molecular replacement with the earlier structure as the search model.
+- **R well below 0.59 at cycle 0, and falling.** The model fits: the crystals are isomorphous. Continue.
+- **R near 0.59 at cycle 0, and hardly changing.** The model does not fit. _Why:_ an unrelated model gives R near 0.59 (Wilson, 1950, Acta Cryst. 3, 397–398). Check that you used `reindexed.mtz`. If you did, the crystals are not isomorphous: record that and go to molecular replacement with the earlier structure as the search model.
 
 ## R-free
 
