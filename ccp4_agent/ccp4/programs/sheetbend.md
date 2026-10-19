@@ -10,7 +10,7 @@ The program is called `csheetbend`. Give it a PDB file:
 csheetbend -mtzin <data.mtz> -colin-fo "/*/*/[F,SIGF]" -colin-free "/*/*/[FreeR_flag]" -pdbin <model.pdb> -pdbout sheetbend.pdb -coord -cycles 12 -resolution-by-cycle 6,3 -pseudo-regularize -refine-regularize-cycles 3 > sheetbend.log
 ```
 
-- `-colin-fo` names the amplitudes and their sigmas, and `-colin-free` the free-R flag, in the form `/*/*/[<column>]`. List the columns with `gemmi mtz` ([programs/gemmi-mtz.md](gemmi-mtz.md)). The example is for `DataFiles/AUTOMATIC_DEFAULT_free.mtz` from xia2. Keep the quotes. If the file has no free-R flag, add one first with Freerflag ([programs/freerflag.md](freerflag.md)).
+- `-colin-fo` names the amplitudes and their sigmas, and `-colin-free` the free-R flag, in the form `/*/*/[<column>]`. List the columns with `gemmi mtz` ([programs/gemmi-mtz.md](gemmi-mtz.md)). The example is for `DataFiles/AUTOMATIC_DEFAULT_free.mtz` from xia2. Keep the quotes. Sheetbend takes flag 0 as the free set: check the flags first with `ccp4-agent freer` ([programs/ccp4-agent-freer.md](ccp4-agent-freer.md)).
 - `-coord` refines the coordinates.
 - `-cycles 12 -resolution-by-cycle 6,3` runs 12 cycles, from 6 Å to 3 Å. _Why:_ large shifts are found at low resolution first.
 - `-pseudo-regularize -refine-regularize-cycles 3` repeats the 12 cycles three times, each followed by a regularisation of the geometry.

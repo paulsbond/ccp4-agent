@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 
-from . import batches, contents, install
+from . import batches, contents, freer, install
 
 
 def main() -> None:
@@ -39,6 +39,16 @@ def main() -> None:
     model_parser.add_argument(
         "--construct", type=Path, help="FASTA or PIR file to compare with the model"
     )
+    freer_parser = commands.add_parser(
+        "freer", help="Check a free-R flag column and convert it for CCP4"
+    )
+    freer_parser.add_argument("mtz", type=Path, help="Merged MTZ file")
+    freer_parser.add_argument(
+        "--label", help="Free-R flag column, if there are several"
+    )
+    freer_parser.add_argument(
+        "--output", type=Path, help="Converted MTZ file (default: <name>_freer.mtz)"
+    )
     args = parser.parse_args()
 
     if args.command == "install":
@@ -53,6 +63,8 @@ def main() -> None:
         contents.similar(args.sequences, args.rows)
     elif args.command == "model":
         contents.model(args.model, args.construct)
+    elif args.command == "freer":
+        freer.check(args.mtz, args.label, args.output)
 
 
 if __name__ == "__main__":

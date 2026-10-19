@@ -29,6 +29,7 @@ ccp4_agent/
   install.py                  ccp4-agent install and uninstall
   batches.py                  ccp4-agent batches, data quality against image number
   contents.py                 ccp4-agent uniprot, similar and model, for the cell contents
+  freer.py                    ccp4-agent freer, free-R flag conventions
   ccp4/                       the skill: everything the solver reads
     SKILL.md                  router and index; its description is all agents see until it is needed
     topics/<name>.md          what to do at a stage or for a problem, and which programs to use

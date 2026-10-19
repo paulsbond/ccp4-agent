@@ -37,6 +37,7 @@ Only stages 1 to 4 and isomorphous refinement have topic pages so far. If you ar
 
 - [programs/aimless.md](programs/aimless.md): scaling and merging integrated data, such as unscaled data from MOSFLM.
 - [programs/ccp4-agent-batches.md](programs/ccp4-agent-batches.md): data quality against image number.
+- [programs/ccp4-agent-freer.md](programs/ccp4-agent-freer.md): checking the free-R flags of merged data, and converting them for CCP4 programs.
 - [programs/ccp4-agent-model.md](programs/ccp4-agent-model.md): the space group, cell, ligands and sequences of a coordinate file or PDB entry, compared with the crystal's contents.
 - [programs/ccp4-agent-similar.md](programs/ccp4-agent-similar.md): searching the current PDB online, only when the user asks.
 - [programs/ccp4-agent-uniprot.md](programs/ccp4-agent-uniprot.md): a UniProt entry, compared with the construct.
